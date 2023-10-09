@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="mb-3">
                 <label class="form-label">Profile Image</label>
-                <input type="file" class="form-control form-control-sm shadow-none" @change="profileImage"/>
+                <input type="file" class="form-control form-control-sm shadow-none" @change="profileImage" ref="profileImage"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">Name</label>
@@ -30,7 +30,9 @@
         name: "HomeNameView",
         components: {CardArrow},
         data: () => ({
-            name: new Form({})
+            name: new Form({
+                unique_id : 'only-me'
+            })
         }),
         methods: {
             profileImage(event) {
@@ -40,13 +42,15 @@
                 axios.post('/get/home/name').then((response) => {
                     let getHomeName = response.data.homeName;
                     this.name.image = null;
-                    this.name.name = getHomeName.name
-                    this.$refs.name.focus()
+                    this.name.name = getHomeName.name;
                 });
             },
             nameSubmit() {
-                this.name.post('/admin/create-home-name');
-                this.getHomeName();
+                this.name.post('/admin/create-or-update-home-name').then(()=>{
+                    this.getHomeName();
+                });
+                this.$refs.profileImage.value = null;
+                this.$refs.name.focus();
             }
         },
         created() {

@@ -9,7 +9,8 @@
                          v-for="socialMedia in socialMedias">
                         <div class="row">
                             <a :href="socialMedia.link" target="_blank" class="col-auto" v-html="socialMedia.icon"></a>
-                            <button class="btn btn-close btn-sm col-auto shadow-none small" @click="deleteThis(socialMedia.id)"></button>
+                            <button class="btn btn-close btn-sm col-auto shadow-none small"
+                                    @click="deleteThis(socialMedia.id)"></button>
                         </div>
                     </div>
                 </div>
@@ -33,7 +34,7 @@
         <div class="card-footer">
             <div class="row justify-content-between">
                 <button class="btn btn-sm btn-lime col-auto shadow-none" @click="newSocialMedia">Submit</button>
-                <button class="btn btn-sm btn-dark col-auto shadow-none" @click="socialMedia={}">Reset</button>
+                <button class="btn btn-sm btn-dark col-auto shadow-none" @click="socialMedia.reset()">Reset</button>
             </div>
         </div>
         <CardArrow/>
@@ -54,9 +55,11 @@
         methods: {
             newSocialMedia() {
                 this.socialMedia.post('/create/home/social-media').then((res) => {
-                    this.successMessage = res.data.message
+                    this.successMessage = res.data.message;
+                    this.successMessageTimeout();
                 });
                 this.getSocialMedia();
+                this.socialMedia.reset();
                 this.$refs.name.focus();
             },
             getSocialMedia() {
@@ -64,16 +67,22 @@
                     this.socialMedias = res.data.allSocialMedia;
                 });
             },
-            deleteThis(id){
-                axios.post('/delete/home/'+id+'/social-media').then((res)=>{
-                    this.successMessage = res.data.message
+            deleteThis(id) {
+                axios.post('/delete/home/' + id + '/social-media').then((res) => {
+                    this.successMessage = res.data.message;
+                    this.successMessageTimeout();
                 });
                 this.getSocialMedia();
+            },
+            successMessageTimeout(){
+                setTimeout(()=>{
+                    this.successMessage = null
+                },3000)
             }
         },
         created() {
             this.getSocialMedia();
-        }
+        },
     }
 </script>
 

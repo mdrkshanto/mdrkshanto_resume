@@ -32,7 +32,7 @@ Route::middleware([
     });
 
     Route::controller(AdminHomeController::class)->group(function () {
-        Route::post('/admin/create-home-name', 'createName');
+        Route::post('/admin/create-or-update-home-name', 'createOrUpdateName');
         Route::post('/get/home/name','getHomeName');
         Route::post('/create/home/subtitle','createSubtitle');
         Route::post('/get/home/subtitle','getSubtitles');

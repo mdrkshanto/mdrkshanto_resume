@@ -22,8 +22,8 @@ class MDRKShantoController extends Controller
         $this->homeName = AdminHome::find(1, ['image', 'name']);
         $this->homeSubtitles = AdminHomeSubtitle::orderBy('subtitle', 'asc')->get(['subtitle']);
         $this->socialMedias = SocialMediaLink::orderBy('name', 'asc')->get(['name', 'icon', 'link']);
-        $this->homeDownloadButton = HomeButton::where('name','download')->first('status','link');
-        $this->homeContactButton = HomeButton::where('name','contact')->first('status','link');
+        $this->homeDownloadButton = HomeButton::where('name','download')->first(['status','link']);
+        $this->homeContactButton = HomeButton::where('name','contact')->first(['status','link']);
 
 
         return response()->json([

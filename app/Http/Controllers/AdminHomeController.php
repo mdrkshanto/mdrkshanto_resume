@@ -10,25 +10,36 @@ use Illuminate\Http\Request;
 
 class AdminHomeController extends Controller
 {
-    public function createName(Request $request)
+    public function createOrUpdateName(Request $request)
     {
-        $this->validate($request, [
-            'image' => 'nullable|image',
-            'name' => 'required'
-        ]);
-        $countName = count(AdminHome::all());
+        $adminHome = AdminHome::where('unique_id', 'only-me')->first();
 
-        if ($countName < 1) {
-            AdminHome::createName($request);
-        } else {
+        if ($adminHome) {
+            $this->validate($request, [
+                'unique_id' => 'required|string|exists:admin_homes,unique_id',
+                'image' => 'nullable|image',
+                'name' => 'required'
+            ]);
             AdminHome::editName($request);
+            return response()->json(['message' => 'Updated Successfully.'], 200);
+        } else {
+            $this->validate($request, [
+                'unique_id' => 'required|string|unique:admin_homes,unique_id',
+                'image' => 'nullable|image',
+                'name' => 'required'
+            ]);
+            if (count(AdminHome::all()) < 1) {
+                AdminHome::createName($request);
+                return response()->json(['message' => 'Created Successfully.'], 200);
+            } else {
+                return response()->json(['message' => 'Cannot Create Anymore.'], 200);
+            }
         }
-        return response()->json(['message' => 'Submitted Successfully.'], 200);
     }
 
     public function getHomeName()
     {
-        return response()->json(['homeName' => AdminHome::find(1, ['image', 'name'])], 200);
+        return response()->json(['homeName' => AdminHome::where('unique_id', 'only-me')->first(['image', 'name'])], 200);
     }
 
     public function createSubtitle(Request $request)

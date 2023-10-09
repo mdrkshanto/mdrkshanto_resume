@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('admin_homes', function (Blueprint $table) {
             $table->id();
+            $table->text('unique_id')->unique();
             $table->text('image')->nullable();
             $table->text('name');
             $table->timestamps();

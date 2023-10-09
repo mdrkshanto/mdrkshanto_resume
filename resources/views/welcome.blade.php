@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://kit-pro.fontawesome.com/releases/v6.4.2/css/pro.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
@@ -28,6 +28,7 @@
     <link href="{{asset('/')}}mdrkshanto/assets/css/style.css" rel="stylesheet">
 
     @vite('resources/js/app.js')
+{{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
 
 </head>
 
