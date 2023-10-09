@@ -10,6 +10,9 @@ window.axios = axios;
 import Form from 'vform';
 window.Form = Form;
 
+import customHelper from "./helpers/custom";
+window.Helper = customHelper;
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**

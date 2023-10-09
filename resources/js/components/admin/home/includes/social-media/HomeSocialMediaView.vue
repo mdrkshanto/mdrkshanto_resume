@@ -47,8 +47,8 @@
     export default {
         name: "HomeSocialMediaView",
         components: {CardArrow},
+        mixins:[Helper],
         data: () => ({
-            successMessage: null,
             socialMedias: [],
             socialMedia: new Form({})
         }),
@@ -73,11 +73,6 @@
                     this.successMessageTimeout();
                 });
                 this.getSocialMedia();
-            },
-            successMessageTimeout(){
-                setTimeout(()=>{
-                    this.successMessage = null
-                },3000)
             }
         },
         created() {

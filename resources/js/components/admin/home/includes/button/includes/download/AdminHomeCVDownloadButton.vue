@@ -31,8 +31,8 @@
     export default {
         name: "AdminHomeCVDownloadButton",
         components: {CardArrow},
+        mixins:[Helper],
         data: () => ({
-            successMessage: null,
             form: new Form({
                 name: 'download',
                 status: false,
@@ -56,11 +56,6 @@
                     }
                     this.form.link = button.link;
                 })
-            },
-            successMessageTimeout(){
-                setTimeout(()=>{
-                    this.successMessage = null
-                },3000)
             }
         },
         created() {

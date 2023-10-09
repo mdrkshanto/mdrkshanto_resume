@@ -31,11 +31,11 @@
         name: "HomeNameView",
         components: {CardArrow},
         data: () => ({
-            successMessage: null,
             name: new Form({
                 unique_id : 'only-me'
             })
         }),
+        mixins:[Helper],
         methods: {
             profileImage(event) {
                 this.name.image = event.target.files[0];
@@ -55,11 +55,6 @@
                 });
                 this.$refs.profileImage.value = null;
                 this.$refs.name.focus();
-            },
-            successMessageTimeout(){
-                setTimeout(()=>{
-                    this.successMessage = null
-                },3000)
             }
         },
         created() {

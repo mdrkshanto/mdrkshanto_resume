@@ -35,15 +35,16 @@
 
 <script>
     import CardArrow from "../../../../global/card/CardArrow.vue";
+
     export default {
         name: "HomeSubtitleView",
         components: {CardArrow},
-        data:()=>({
-            successMessage: null,
+        mixins: [Helper],
+        data: () => ({
             subtitles: [],
             subtitle: new Form({}),
         }),
-        methods:{
+        methods: {
             subtitleSubmit() {
                 this.subtitle.post('/create/home/subtitle').then((res) => {
                     this.successMessage = res.data.message;
@@ -53,7 +54,7 @@
                 this.subtitle.subtitle = null;
                 this.$refs.subtitle.focus();
             },
-            getSubtitles(){
+            getSubtitles() {
                 axios.post('/get/home/subtitle').then((res) => {
                     this.subtitles = res.data.subtitles;
                 });
@@ -64,11 +65,6 @@
                     this.successMessageTimeout();
                 });
                 this.getSubtitles();
-            },
-            successMessageTimeout(){
-                setTimeout(()=>{
-                    this.successMessage = null
-                },3000)
             }
         },
         created() {
