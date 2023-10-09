@@ -2,6 +2,7 @@
     <div class="card mb-3">
         <div class="card-body mb-3">
             <label class="form-label">Subtitles</label>
+            <div class="bg-success text-center fw-bolder mb-3" v-if="successMessage">{{successMessage}}</div>
             <div class="card card-body" v-if="subtitles.length > 0">
                 <div class="row">
                     <div class="col-auto my-1" v-for="subtitle in subtitles">
@@ -38,12 +39,16 @@
         name: "HomeSubtitleView",
         components: {CardArrow},
         data:()=>({
+            successMessage: null,
             subtitles: [],
             subtitle: new Form({}),
         }),
         methods:{
             subtitleSubmit() {
-                this.subtitle.post('/create/home/subtitle');
+                this.subtitle.post('/create/home/subtitle').then((res) => {
+                    this.successMessage = res.data.message;
+                    this.successMessageTimeout();
+                });
                 this.getSubtitles();
                 this.subtitle.subtitle = null;
                 this.$refs.subtitle.focus();
@@ -54,8 +59,16 @@
                 });
             },
             deleteSubtitle(id) {
-                axios.post('/delete/home/' + id + '/subtitle');
+                axios.post('/delete/home/' + id + '/subtitle').then((res) => {
+                    this.successMessage = res.data.message;
+                    this.successMessageTimeout();
+                });
                 this.getSubtitles();
+            },
+            successMessageTimeout(){
+                setTimeout(()=>{
+                    this.successMessage = null
+                },3000)
             }
         },
         created() {

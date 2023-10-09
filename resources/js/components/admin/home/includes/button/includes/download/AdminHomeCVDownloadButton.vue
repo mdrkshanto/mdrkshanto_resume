@@ -4,6 +4,7 @@
             <div class="card-title">Download Button</div>
         </div>
         <div class="card-body">
+            <div class="bg-success text-center fw-bolder mb-3" v-if="successMessage">{{successMessage}}</div>
             <div class="mb-3">
                 <label>Button Link</label>
                 <input type="text" class="form-control form-control-sm shadow-none" placeholder="Button link"
@@ -31,6 +32,7 @@
         name: "AdminHomeCVDownloadButton",
         components: {CardArrow},
         data: () => ({
+            successMessage: null,
             form: new Form({
                 name: 'download',
                 status: false,
@@ -38,7 +40,10 @@
         }),
         methods: {
             createOrUpdateButton() {
-                this.form.post('/create-or-update/home/button');
+                this.form.post('/create-or-update/home/button').then((res) => {
+                    this.successMessage = res.data.message;
+                    this.successMessageTimeout();
+                });
                 this.getDownloadButton();
             },
             getDownloadButton() {
@@ -51,6 +56,11 @@
                     }
                     this.form.link = button.link;
                 })
+            },
+            successMessageTimeout(){
+                setTimeout(()=>{
+                    this.successMessage = null
+                },3000)
             }
         },
         created() {

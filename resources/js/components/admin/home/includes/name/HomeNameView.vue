@@ -1,6 +1,7 @@
 <template>
     <div class="card mb-3">
         <div class="card-body">
+            <div class="bg-success text-center fw-bolder mb-3" v-if="successMessage">{{successMessage}}</div>
             <div class="mb-3">
                 <label class="form-label">Profile Image</label>
                 <input type="file" class="form-control form-control-sm shadow-none" @change="profileImage" ref="profileImage"/>
@@ -30,6 +31,7 @@
         name: "HomeNameView",
         components: {CardArrow},
         data: () => ({
+            successMessage: null,
             name: new Form({
                 unique_id : 'only-me'
             })
@@ -46,11 +48,18 @@
                 });
             },
             nameSubmit() {
-                this.name.post('/admin/create-or-update-home-name').then(()=>{
+                this.name.post('/admin/create-or-update-home-name').then((res) => {
                     this.getHomeName();
+                    this.successMessage = res.data.message;
+                    this.successMessageTimeout();
                 });
                 this.$refs.profileImage.value = null;
                 this.$refs.name.focus();
+            },
+            successMessageTimeout(){
+                setTimeout(()=>{
+                    this.successMessage = null
+                },3000)
             }
         },
         created() {
