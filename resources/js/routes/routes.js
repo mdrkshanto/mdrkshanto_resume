@@ -1,5 +1,6 @@
 import DashboardView from "../components/admin/dashboard/DashboardView.vue";
 import AdminHomeView from "../components/admin/home/AdminHomeView.vue";
+import AdminAbout from "../components/admin/about/AdminAbout.vue";
 
 export default [
     {
@@ -22,5 +23,13 @@ export default [
             title: 'Home'
         },
         component: AdminHomeView,
+    },
+    {
+        path: '/about',
+        name: "admin.about",
+        meta: {
+            title: 'About'
+        },
+        component: AdminAbout,
     }
 ]

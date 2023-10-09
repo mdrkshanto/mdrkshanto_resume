@@ -14,7 +14,13 @@
                 <div class="menu-item" :class="$route.name == 'admin.home'?'active': null">
                     <router-link :to="{name:'admin.home'}" class="menu-link">
                         <span class="menu-icon"><i class="bi bi-house-fill"></i></span>
-                        <span class="menu-text">Home Page</span>
+                        <span class="menu-text">Home Contents</span>
+                    </router-link>
+                </div>
+                <div class="menu-item" :class="$route.name == 'admin.about'?'active': null">
+                    <router-link :to="{name:'admin.about'}" class="menu-link">
+                        <span class="menu-icon"><i class="bi bi-person-lines-fill"></i></span>
+                        <span class="menu-text">About Contents</span>
                     </router-link>
                 </div>
             </div>

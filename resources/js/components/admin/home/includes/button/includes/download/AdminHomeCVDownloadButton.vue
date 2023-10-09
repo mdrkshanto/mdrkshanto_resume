@@ -8,11 +8,11 @@
             <div class="mb-3">
                 <label>Button Link</label>
                 <input type="text" class="form-control form-control-sm shadow-none" placeholder="Button link"
-                       v-model.trim="form.link">
+                       v-model.trim="form.link" ref="link">
             </div>
             <div class="form-check">
                 <input class="form-check-input shadow-none" type="checkbox" id="downloadButtonStatus"
-                       v-model="form.status" ref="download">
+                       v-model="form.status">
                 <label class="form-check-label fw-bolder" :class="form.status == true ? 'text-success' :
                     'text-warning'" for="downloadButtonStatus">{{form.status == true ? 'Active' :
                     'Inactive'}}</label>
@@ -45,6 +45,7 @@
                     this.successMessageTimeout();
                 });
                 this.getDownloadButton();
+                this.$refs.link.focus()
             },
             getDownloadButton() {
                 axios.post('/get/home/download/button').then((res) => {

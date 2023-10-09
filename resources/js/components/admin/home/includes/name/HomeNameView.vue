@@ -17,7 +17,7 @@
         <div class="card-footer">
             <div class="row justify-content-between">
                 <button class="btn btn-sm btn-lime col-auto" @click="nameSubmit">Submit</button>
-                <button class="btn btn-sm btn-dark col-auto" @click="name.image = null">Reset</button>
+                <button class="btn btn-sm btn-dark col-auto" @click="resetImg">Reset</button>
             </div>
         </div>
         <CardArrow/>
@@ -43,18 +43,21 @@
             getHomeName() {
                 axios.post('/get/home/name').then((response) => {
                     let getHomeName = response.data.homeName;
-                    this.name.image = null;
                     this.name.name = getHomeName.name;
+                    this.resetImg()
                 });
             },
             nameSubmit() {
                 this.name.post('/admin/create-or-update-home-name').then((res) => {
                     this.getHomeName();
                     this.successMessage = res.data.message;
-                    this.successMessageTimeout();
+                    this.successMessageTimeout()
                 });
+            },
+            resetImg(){
+                this.name.image = null;
                 this.$refs.profileImage.value = null;
-                this.$refs.name.focus();
+                this.$refs.name.focus()
             }
         },
         created() {

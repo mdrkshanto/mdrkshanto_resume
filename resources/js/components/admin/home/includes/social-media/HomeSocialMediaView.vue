@@ -34,7 +34,7 @@
         <div class="card-footer">
             <div class="row justify-content-between">
                 <button class="btn btn-sm btn-lime col-auto shadow-none" @click="newSocialMedia">Submit</button>
-                <button class="btn btn-sm btn-dark col-auto shadow-none" @click="socialMedia.reset()">Reset</button>
+                <button class="btn btn-sm btn-dark col-auto shadow-none" @click="resetMedia">Reset</button>
             </div>
         </div>
         <CardArrow/>
@@ -59,8 +59,7 @@
                     this.successMessageTimeout();
                 });
                 this.getSocialMedia();
-                this.socialMedia.reset();
-                this.$refs.name.focus();
+                this.resetMedia()
             },
             getSocialMedia() {
                 axios.post('/get/home/social-media').then((res) => {
@@ -73,6 +72,11 @@
                     this.successMessageTimeout();
                 });
                 this.getSocialMedia();
+                this.resetMedia()
+            },
+            resetMedia(){
+                this.socialMedia.reset();
+                this.$refs.name.focus();
             }
         },
         created() {

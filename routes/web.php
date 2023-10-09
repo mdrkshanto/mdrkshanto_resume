@@ -29,6 +29,7 @@ Route::middleware([
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
         Route::get('/home', 'index')->name('admin.home');
+        Route::get('/about', 'index')->name('admin.about');
     });
 
     Route::controller(AdminHomeController::class)->group(function () {

@@ -8,7 +8,7 @@
             <div class="mb-3">
                 <label>Button Link</label>
                 <input type="text" class="form-control form-control-sm shadow-none" placeholder="Button link"
-                       v-model.trim="form.link">
+                       v-model.trim="form.link" ref="link">
             </div>
             <div class="form-check">
                 <input class="form-check-input shadow-none" type="checkbox" id="contactButtonStatus"
@@ -45,6 +45,7 @@
                     this.successMessageTimeout();
                 });
                 this.getContactButton();
+                this.$refs.link.focus()
             },
             getContactButton() {
                 axios.post('/get/home/contact/button').then((res) => {
