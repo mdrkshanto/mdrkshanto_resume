@@ -22,8 +22,8 @@
                         <div class="col-md-3"></div>
                         <div class="col-md-9">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input shadow-none" id="status">
-                                <label for="status">Active | Inactive</label>
+                                <input type="checkbox" class="form-check-input shadow-none" id="objectStatus" v-model="form.object_status">
+                                <label for="objectStatus" class="fw-bolder" :class="form.object_status ? 'text-success' : 'text-danger'">{{form.object_status ? 'Active' : 'Inactive'}}</label>
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,9 @@
         name: "AdminAbout",
         components: {ComponentsView, CardArrow},
         data: () => ({
-            form: new Form({})
+            form: new Form({
+                object_status: false
+            })
         }),
         methods: {}
     }

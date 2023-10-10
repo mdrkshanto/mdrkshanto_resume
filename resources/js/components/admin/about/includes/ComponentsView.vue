@@ -3,7 +3,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <div class="row justify-items-center justify-content-between">
+                    <div class="row align-items-center justify-content-between">
                         <h4 class="card-title col-md-auto">Component List</h4>
                         <span class="btn btn-sm shadow-none btn-primary col-md-auto" data-bs-toggle="modal" data-bs-target="#addComponent"><i
                             class="bi bi-plus-lg"></i></span>
@@ -44,7 +44,7 @@
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-header">
-                            <div class="row justify-content-between justify-items-center">
+                            <div class="row justify-content-between align-items-center">
                                 <h4 class="card-title col-md-auto">Add new component</h4>
                                 <span class="btn-close shadow-none btn-sm col-md-auto" data-bs-dismiss="modal"></span>
                             </div>
