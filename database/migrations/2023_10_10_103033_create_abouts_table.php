@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
-            $table->string('table')->unique();
+            $table->string('name')->unique();
             $table->text('page_title');
             $table->string('object')->nullable();
             $table->boolean('object_status')->default(false);
