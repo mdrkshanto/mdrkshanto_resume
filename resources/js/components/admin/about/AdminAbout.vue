@@ -50,6 +50,7 @@
         components: {ComponentsView, CardArrow},
         data: () => ({
             form: new Form({
+                table: 'about_table',
                 object_status: false
             })
         }),
