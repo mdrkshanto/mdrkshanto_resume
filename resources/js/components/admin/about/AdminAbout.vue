@@ -18,6 +18,21 @@
                                       v-model.trim="form.object"></textarea>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input shadow-none" id="status">
+                                <label for="status">Active | Inactive</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
+                            <button class="btn btn-sm shadow-none btn-primary w-100">Submit</button>
+                        </div>
+                    </div>
                 </div>
                 <CardArrow/>
             </div>
@@ -33,11 +48,9 @@
     export default {
         name: "AdminAbout",
         components: {ComponentsView, CardArrow},
-        data() {
-            return {
-                form: new Form({})
-            }
-        },
+        data: () => ({
+            form: new Form({})
+        }),
         methods: {}
     }
 </script>

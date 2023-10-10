@@ -87,7 +87,3 @@
         components: {CardArrow}
     }
 </script>
-
-<style scoped>
-
-</style>
