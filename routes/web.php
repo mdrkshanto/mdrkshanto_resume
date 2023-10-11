@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MDRKShantoController;
 use App\Http\Controllers\AdminHomeController;
+use App\Http\Controllers\AboutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,12 @@ Route::middleware([
         Route::post('/get/home/download/button','getDownloadButton');
         Route::post('/get/home/contact/button','getContactButton');
     });
+
+    Route::controller(AboutController::class)->group(function (){
+        Route::post('/create-or-update/about/content','createOrUpdateContent');
+        Route::post('/get/about/content','getContent');
+    });
+
 });
 
-Route::get('/test', [MDRKShantoController::class, 'getContents']);
+Route::get('/test', [AboutController::class, 'getContent']);

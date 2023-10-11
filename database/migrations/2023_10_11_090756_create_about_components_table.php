@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('abouts', function (Blueprint $table) {
+        Schema::create('about_components', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->text('page_title');
-            $table->longText('object')->nullable();
-            $table->boolean('object_status')->default(false);
+            $table->tinyInteger('about_id');
+            $table->string('field_name');
+            $table->string('field_value');
+            $table->boolean('field_type')->default(false);
+            $table->boolean('field_status')->default(true);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('abouts');
+        Schema::dropIfExists('about_components');
     }
 };
