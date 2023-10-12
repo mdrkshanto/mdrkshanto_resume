@@ -7,6 +7,9 @@ export default {
             setTimeout(() => {
                 this.successMessage = null
             }, 3000)
+        },
+        moment(date,format) {
+            return moment(date,format);
         }
     }
 }

@@ -23,7 +23,7 @@ class AboutController extends Controller
             ]);
 
             About::updateContent($request);
-            return response()->json(['message' => 'About contents updated successfully.']);
+            return response()->json(['message' => 'About contents updated successfully.'],200);
         } else {
             if (count(About::all()) < 1) {
                 $this->validate($request, [
@@ -34,35 +34,74 @@ class AboutController extends Controller
                 ]);
 
                 About::createNew($request);
-                return response()->json(['message' => 'About contents created successfully.']);
+                return response()->json(['message' => 'About contents created successfully.'],200);
             } else {
-                return response()->json(['message' => 'You are trying something wrong.']);
+                return response()->json(['message' => 'You are trying something wrong.'],200);
             }
         }
     }
 
     public function getContent()
     {
-        return response()->json(['aboutContent' => About::where('name', 'about_content')->first()]);
+        return response()->json(['aboutContent' => About::where('name', 'about_content')->first()],200);
     }
 
     public function newComponent(Request $request)
     {
-        $this->validate($request,[
-            'field_name'=>'required|string',
-            'field_type'=>'required|boolean',
-            'field_status'=>'required|boolean'
-        ]);
-        if ($request->field_type){
-            $this->validate($request,[
-                'field_value'=>'required|date|date_format:Y-m-d'
+//        return strtotime('1990-03-09');
+
+        if ($request->field_type) {
+            $this->validate($request, [
+                'field_name' => 'required|string',
+                'field_value' => 'required|date|date_format:Y-m-d',
+                'field_type' => 'required|boolean',
+                'field_status' => 'required|boolean'
             ]);
-        }else{
-            $this->validate($request,[
-                'field_value'=>'required|string'
+        } else {
+            $this->validate($request, [
+                'field_name' => 'required|string',
+                'field_value' => 'required|string',
+                'field_type' => 'required|boolean',
+                'field_status' => 'required|boolean'
             ]);
         }
         AboutComponent::createNew($request);
-        return response()->json(['message'=>'New component created successfully.']);
+        return response()->json(['message' => 'New component created successfully.'],200);
+    }
+
+    public function getComponents()
+    {
+        return response()->json(['aboutComponents'=>AboutComponent::all()],200);
+    }
+
+    public function getComponent($id){
+        return response()->json(['aboutComponent'=>AboutComponent::find($id)],200);
+    }
+
+    public function updateComponent(Request $request, $id)
+    {
+        if ($request->field_type) {
+            $this->validate($request, [
+                'field_name' => 'required|string',
+                'field_value' => 'required|date|date_format:Y-m-d',
+                'field_type' => 'required|boolean',
+                'field_status' => 'required|boolean'
+            ]);
+        } else {
+            $this->validate($request, [
+                'field_name' => 'required|string',
+                'field_value' => 'required|string',
+                'field_type' => 'required|boolean',
+                'field_status' => 'required|boolean'
+            ]);
+        }
+        AboutComponent::updateComponent($request, $id);
+        return response()->json(['message'=>'The component updated successfully.'],200);
+    }
+
+    public function deleteComponent($id)
+    {
+        AboutComponent::deleteComponent($id);
+        return response()->json(['message'=>'The component deleted successfully.'],200);
     }
 }

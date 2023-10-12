@@ -10,6 +10,9 @@ window.axios = axios;
 import Form from 'vform';
 window.Form = Form;
 
+import momentJs from "moment";
+window.moment = momentJs;
+
 import customHelper from "./helpers/custom";
 window.Helper = customHelper;
 

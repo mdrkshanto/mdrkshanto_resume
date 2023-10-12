@@ -50,8 +50,13 @@ Route::middleware([
     Route::controller(AboutController::class)->group(function (){
         Route::post('/create-or-update/about/content','createOrUpdateContent');
         Route::post('/get/about/content','getContent');
+        Route::post('/create/about/component','newComponent');
+        Route::post('/get/about/components','getComponents');
+        Route::post('/get/about/{id}/component','getComponent');
+        Route::post('/update/about/{id}/component','updateComponent');
+        Route::post('/delete/about/{id}/component','deleteComponent');
     });
 
 });
 
-Route::get('/test', [AboutController::class, 'getContent']);
+Route::get('/test/{id}', [AboutController::class, 'getComponent']);

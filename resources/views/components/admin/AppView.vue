@@ -16,7 +16,7 @@
 
 <!--        <ThemePanelView/>-->
 
-        <a href="#" data-toggle="scroll-to-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+        <span data-toggle="scroll-to-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></span>
 
     </div>
 </template>

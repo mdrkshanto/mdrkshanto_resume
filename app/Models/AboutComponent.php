@@ -21,9 +21,34 @@ class AboutComponent extends Model
 
         self::$aboutComponent->about_id = self::$about->id;
         self::$aboutComponent->field_name = $request->field_name;
-        self::$aboutComponent->field_value = $request->field_type ? strtotime(date('Y-m-d',$request->field_value)) : $request->field_value;
+        self::$aboutComponent->field_value = $request->field_type ? date('Y-m-d', strtotime($request->field_value)) : $request->field_value;
         self::$aboutComponent->field_type = $request->field_type ? 1 : 0;
         self::$aboutComponent->field_status = $request->field_status ? 1 : 0;
         self::$aboutComponent->save();
+    }
+
+    protected static function updateComponent($request, $id)
+    {
+        self::$about = About::where('name', 'about_content')->first();
+
+        self::$aboutComponent = AboutComponent::find($id);
+
+        self::$aboutComponent->about_id = self::$about->id;
+        self::$aboutComponent->field_name = $request->field_name;
+        self::$aboutComponent->field_value = $request->field_type ? date('Y-m-d', strtotime($request->field_value)) : $request->field_value;
+        self::$aboutComponent->field_type = $request->field_type ? 1 : 0;
+        self::$aboutComponent->field_status = $request->field_status ? 1 : 0;
+        self::$aboutComponent->save();
+    }
+
+    protected static function deleteComponent($id)
+    {
+        AboutComponent::destroy($id);
+    }
+
+
+    public function about()
+    {
+        $this->belongsTo(About::class);
     }
 }
