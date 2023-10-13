@@ -194,8 +194,8 @@
             <div class="modal-content border-0">
                 <div class="modal-body">
                     <div class="card">
-                        <div class="card-body">
-                            <div class="row justify-content-center">
+                        <div class="card-body py-5">
+                            <div class="row justify-content-center py-5">
                                 <h4 class="col-auto text-center fw-bolder text-danger">Are you sure to delete the
                                     component.</h4>
                             </div>

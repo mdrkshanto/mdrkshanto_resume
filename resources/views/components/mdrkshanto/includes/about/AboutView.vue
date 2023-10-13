@@ -1,42 +1,14 @@
 <template>
     <!-- About Start -->
     <section class="py-5 border-bottom wow fadeInUp" data-wow-delay="0.1s">
-        <h1 class="title pb-3 mb-5">About Me</h1>
-        <p>Diam rebum sea stet rebum ea. Et kasd amet et accusam elitr voluptua. Tempor dolore sit et
-            accusam ipsum erat duo. Gubergren et takimata dolor duo amet et sanctus elitr lorem. Ipsum amet
-            duo rebum dolor labore. No diam duo lorem elitr dolor takimata elitr no. Magna et gubergren duo
-            ipsum sed, amet ea voluptua dolores voluptua dolor ipsum et. Sit takimata erat consetetur
-            invidunt lorem consetetur. Lorem magna diam vero nonumy. Aliquyam diam voluptua magna et magna
-            nonumy. Accusam rebum clita et sit vero lorem, voluptua amet sit eos no et labore vero, et
-            consetetur justo et et sit aliquyam labore, sit erat lorem justo dolores kasd est sit. Dolor et
-            accusam ea et dolor sit.</p>
+        <h1 class="title pb-3 mb-5">{{content.page_title}}</h1>
+        <p v-if="content.object_status == 1">{{content.object}}</p>
         <div class="row mb-4">
-            <div class="col-sm-6 py-1">
-                <span class="fw-medium text-primary">Name:</span> John Doe
-            </div>
-            <div class="col-sm-6 py-1">
-                <span class="fw-medium text-primary">Birthday:</span> 1 April 1990
-            </div>
-            <div class="col-sm-6 py-1">
-                <span class="fw-medium text-primary">Degree:</span> Master
-            </div>
-            <div class="col-sm-6 py-1">
-                <span class="fw-medium text-primary">Experience:</span> 10 Years
-            </div>
-            <div class="col-sm-6 py-1">
-                <span class="fw-medium text-primary">Phone:</span> +012 345 6789
-            </div>
-            <div class="col-sm-6 py-1">
-                <span class="fw-medium text-primary">Email:</span> info@example.com
-            </div>
-            <div class="col-sm-6 py-1">
-                <span class="fw-medium text-primary">Address:</span> 123 Street, New York, USA
-            </div>
-            <div class="col-sm-6 py-1">
-                <span class="fw-medium text-primary">Freelance:</span> Available
+            <div class="col-sm-6 py-1" v-for="component in components">
+                <span class="fw-medium text-primary">{{component.field_name}}:</span> <template v-if="component.field_type == 1">{{moment(component.field_value).format('DD MMMM, YYYY')}}</template> <template v-else>{{component.field_value}}</template>
             </div>
         </div>
-        <div class="row g-4">
+        <!-- <div class="row g-4">
             <div class="col-md-4 col-lg-6 col-xl-4">
                 <div class="d-flex bg-secondary p-4">
                     <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">10</h1>
@@ -64,7 +36,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
     <!-- About End -->
 </template>
@@ -72,6 +44,24 @@
 <script>
     export default {
         name: "AboutView",
+        mixins:[Helper],
+        data:()=>({
+            content: {},
+            components: []
+        }),
+        methods:{
+            getAboutItems(){
+                axios.post('/get/contents').then((response)=>{
+                    this.content = response.data.aboutContent;
+                    this.components = response.data.aboutComponents;
+                });
+            }
+        },
+        created() {
+            setInterval(()=>{
+                this.getAboutItems();
+            },1000)
+        },
         mounted() {
             // Facts counter
             $('[data-toggle="counter-up"]').counterUp({

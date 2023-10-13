@@ -20,7 +20,7 @@ use App\Http\Controllers\AboutController;
 Route::controller(MDRKShantoController::class)->group(function () {
     Route::get('/', 'index');
 //    Route::get('/login', 'index');
-    Route::post('/get/contents','getContents');
+    Route::post('/get/contents', 'getContents');
 });
 
 Route::middleware([
@@ -36,28 +36,28 @@ Route::middleware([
 
     Route::controller(AdminHomeController::class)->group(function () {
         Route::post('/admin/create-or-update-home-name', 'createOrUpdateName');
-        Route::post('/get/home/name','getHomeName');
-        Route::post('/create/home/subtitle','createSubtitle');
-        Route::post('/get/home/subtitle','getSubtitles');
-        Route::post('/delete/home/{id}/subtitle','deleteSubtitle');
-        Route::post('/create/home/social-media','createSocialMedia');
-        Route::post('/get/home/social-media','getSocialMedia');
-        Route::post('/delete/home/{id}/social-media','deleteSocialMedia');
-        Route::post('/create-or-update/home/button','createOrUpdateButton');
-        Route::post('/get/home/download/button','getDownloadButton');
-        Route::post('/get/home/contact/button','getContactButton');
+        Route::post('/get/home/name', 'getHomeName');
+        Route::post('/create/home/subtitle', 'createSubtitle');
+        Route::post('/get/home/subtitle', 'getSubtitles');
+        Route::post('/delete/home/{id}/subtitle', 'deleteSubtitle');
+        Route::post('/create/home/social-media', 'createSocialMedia');
+        Route::post('/get/home/social-media', 'getSocialMedia');
+        Route::post('/delete/home/{id}/social-media', 'deleteSocialMedia');
+        Route::post('/create-or-update/home/button', 'createOrUpdateButton');
+        Route::post('/get/home/download/button', 'getDownloadButton');
+        Route::post('/get/home/contact/button', 'getContactButton');
     });
 
-    Route::controller(AboutController::class)->group(function (){
-        Route::post('/create-or-update/about/content','createOrUpdateContent');
-        Route::post('/get/about/content','getContent');
-        Route::post('/create/about/component','newComponent');
-        Route::post('/get/about/components','getComponents');
-        Route::post('/get/about/{id}/component','getComponent');
-        Route::post('/update/about/{id}/component','updateComponent');
-        Route::post('/delete/about/{id}/component','deleteComponent');
+    Route::controller(AboutController::class)->group(function () {
+        Route::post('/create-or-update/about/content', 'createOrUpdateContent');
+        Route::post('/get/about/content', 'getContent');
+        Route::post('/create/about/component', 'newComponent');
+        Route::post('/get/about/components', 'getComponents');
+        Route::post('/get/about/{id}/component', 'getComponent');
+        Route::post('/update/about/{id}/component', 'updateComponent');
+        Route::post('/delete/about/{id}/component', 'deleteComponent');
     });
 
+    Route::get('/test', [MDRKShantoController::class, 'getContents']);
 });
 
-Route::get('/test/{id}', [AboutController::class, 'getComponent']);
