@@ -1,11 +1,21 @@
 import DashboardView from "../components/admin/dashboard/DashboardView.vue";
 import AdminHomeView from "../components/admin/home/AdminHomeView.vue";
 import AdminAbout from "../components/admin/about/AdminAbout.vue";
+import AdminLogin from "../components/admin/auth/AdminLogin.vue";
 
 export default [
     {
         path: '/',
         name: "home"
+    },
+
+    {
+        path: '/login',
+        name: "admin.login",
+        meta: {
+            title: 'Login'
+        },
+        component: AdminLogin,
     },
 
     {

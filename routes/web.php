@@ -19,6 +19,7 @@ use App\Http\Controllers\AboutController;
 
 Route::controller(MDRKShantoController::class)->group(function () {
     Route::get('/', 'index');
+//    Route::get('/login', 'index');
     Route::post('/get/contents','getContents');
 });
 

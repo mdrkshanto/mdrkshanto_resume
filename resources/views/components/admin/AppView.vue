@@ -1,20 +1,14 @@
 <template>
-    <div id="app" class="app">
+    <div id="app" class="app" :class="$route.name == 'admin.login'?'app-full-height app-without-header':null">
 
-        <HeaderView/>
-        <SidebarView/>
+        <HeaderView v-if="$route.name != 'admin.login'"/>
+        <SidebarView v-if="$route.name != 'admin.login'"/>
 
-        <div id="content" class="app-content">
+        <div id="content" class="app-content" v-if="$route.name != 'admin.login'">
             <h1 class="page-header">{{$route.meta.title}}</h1>
-
-            <div class="row">
-
-                <router-view/>
-
-            </div>
+            <router-view/>
         </div>
-
-<!--        <ThemePanelView/>-->
+        <router-view v-if="$route.name == 'admin.login'"/>
 
         <span data-toggle="scroll-to-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></span>
 
