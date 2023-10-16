@@ -57,10 +57,14 @@
                 });
             }
         },
+        updated() {
+            this.getAboutItems();
+        },
         created() {
-            setInterval(()=>{
-                this.getAboutItems();
-            },1000)
+            // setInterval(()=>{
+            //     this.getAboutItems();
+            // },1000);
+            this.getAboutItems();
         },
         mounted() {
             // Facts counter
@@ -68,10 +72,8 @@
                 delay: 10,
                 time: 2000
             });
+
+            // this.getAboutItems();
         }
     }
 </script>
-
-<style scoped>
-
-</style>

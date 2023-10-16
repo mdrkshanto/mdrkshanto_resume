@@ -19,10 +19,18 @@
                 });
             }
         },
+        updated() {
+            this.getName();
+        },
+        created() {
+            this.getName();
+        },
         mounted() {
-            setInterval(()=>{
-                this.getName();
-            },1000);
+            // setInterval(()=>{
+            //     this.getName();
+            // },1000);
+
+            this.getName();
         }
     }
 </script>

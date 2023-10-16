@@ -59,7 +59,7 @@
                             <div class="row justify-content-between align-items-center">
                                 <h4 class="card-title col-md-auto">Add new component</h4>
                                 <span class="btn-close shadow-none btn-sm col-md-auto" data-bs-dismiss="modal"
-                                      ref="addClose"></span>
+                                      ref="addClose" @click="resetComponent"></span>
                             </div>
                         </div>
                         <div class="card-body">
@@ -128,7 +128,7 @@
                             <div class="row justify-content-between align-items-center">
                                 <h4 class="card-title col-md-auto">Edit component</h4>
                                 <span class="btn-close shadow-none btn-sm col-md-auto" data-bs-dismiss="modal"
-                                      @click="id = null" ref="editClose"></span>
+                                      @click="resetComponent" ref="editClose"></span>
                             </div>
                         </div>
                         <div class="card-body">
@@ -205,7 +205,7 @@
                                 <span class="btn btn-sm shadow-none btn-warning col-md-auto"
                                       @click="deleteComponent(id)">Yes</span>
                                 <span class="btn btn-sm shadow-none btn-secondary col-md-auto"
-                                      data-bs-dismiss="modal" @click="id = null" ref="deleteClose">No</span>
+                                      data-bs-dismiss="modal" @click="resetComponent" ref="deleteClose">No</span>
                             </div>
                         </div>
                         <CardArrow/>
@@ -247,6 +247,7 @@
                 this.$refs.addClose.click();
             },
             resetComponent() {
+                this.id = null,
                 this.aboutComponent = new Form({
                     field_type: false,
                     field_status: true
@@ -264,8 +265,8 @@
                     this.aboutComponent = new Form({
                         field_name: component.field_name,
                         field_value: component.field_value,
-                        field_type: component.field_type ? true : false,
-                        field_status: component.field_status ? true : false
+                        field_type: Boolean(component.field_type),
+                        field_status: Boolean(component.field_status)
                     });
                 })
             },

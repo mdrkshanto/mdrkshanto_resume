@@ -18,6 +18,9 @@
                 });
             }
         },
+        updated() {
+            this.getSubtitles()
+        },
         created() {
             this.getSubtitles()
         },
@@ -30,7 +33,7 @@
                         backSpeed: 20,
                         smartBackspace: false,
                         loop: true,
-                        interval:1000
+                        interval: 1000
                     });
                 }
             }

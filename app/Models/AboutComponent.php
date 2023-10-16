@@ -22,8 +22,8 @@ class AboutComponent extends Model
         self::$aboutComponent->about_id = self::$about->id;
         self::$aboutComponent->field_name = $request->field_name;
         self::$aboutComponent->field_value = $request->field_type ? date('Y-m-d', strtotime($request->field_value)) : $request->field_value;
-        self::$aboutComponent->field_type = $request->field_type ? 1 : 0;
-        self::$aboutComponent->field_status = $request->field_status ? 1 : 0;
+        self::$aboutComponent->field_type = boolval($request->field_type);
+        self::$aboutComponent->field_status = boolval($request->field_status);
         self::$aboutComponent->save();
     }
 
@@ -36,8 +36,8 @@ class AboutComponent extends Model
         self::$aboutComponent->about_id = self::$about->id;
         self::$aboutComponent->field_name = $request->field_name;
         self::$aboutComponent->field_value = $request->field_type ? date('Y-m-d', strtotime($request->field_value)) : $request->field_value;
-        self::$aboutComponent->field_type = $request->field_type ? 1 : 0;
-        self::$aboutComponent->field_status = $request->field_status ? 1 : 0;
+        self::$aboutComponent->field_type = boolval($request->field_type);
+        self::$aboutComponent->field_status = boolval($request->field_status);
         self::$aboutComponent->save();
     }
 
